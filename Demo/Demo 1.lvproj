@@ -14,6 +14,7 @@
 		<Property Name="specify.custom.address" Type="Bool">false</Property>
 		<Item Name="Decode Publish Packet.vim" Type="VI" URL="../Decode Publish Packet.vim"/>
 		<Item Name="HiveMQ_Client.vi" Type="VI" URL="../HiveMQ_Client.vi"/>
+		<Item Name="Traffic Monitoring Hub.vi" Type="VI" URL="../Traffic Monitoring Hub.vi"/>
 		<Item Name="Dependencies" Type="Dependencies">
 			<Item Name="vi.lib" Type="Folder">
 				<Item Name="BuildHelpPath.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/BuildHelpPath.vi"/>
