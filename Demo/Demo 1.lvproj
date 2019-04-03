@@ -3,6 +3,7 @@
 	<Property Name="NI.LV.All.SourceOnly" Type="Bool">true</Property>
 	<Property Name="NI.Project.Description" Type="Str"></Property>
 	<Item Name="My Computer" Type="My Computer">
+		<Property Name="NI.SortType" Type="Int">3</Property>
 		<Property Name="server.app.propertiesEnabled" Type="Bool">true</Property>
 		<Property Name="server.control.propertiesEnabled" Type="Bool">true</Property>
 		<Property Name="server.tcp.enabled" Type="Bool">false</Property>
@@ -12,11 +13,16 @@
 		<Property Name="server.vi.callsEnabled" Type="Bool">true</Property>
 		<Property Name="server.vi.propertiesEnabled" Type="Bool">true</Property>
 		<Property Name="specify.custom.address" Type="Bool">false</Property>
-		<Item Name="Decode Publish Packet.vim" Type="VI" URL="../Decode Publish Packet.vim"/>
-		<Item Name="HiveMQ_Client.vi" Type="VI" URL="../HiveMQ_Client.vi"/>
+		<Item Name="Utilities" Type="Folder">
+			<Item Name="Decode Publish Packet.vim" Type="VI" URL="../Decode Publish Packet.vim"/>
+			<Item Name="topic_to_Array.vi" Type="VI" URL="../topic_to_Array.vi"/>
+		</Item>
 		<Item Name="Traffic Monitoring Hub.vi" Type="VI" URL="../Traffic Monitoring Hub.vi"/>
+		<Item Name="Simulated Client.vi" Type="VI" URL="../Simulated Client.vi"/>
+		<Item Name="Generate Simulated Cars.vi" Type="VI" URL="../Generate Simulated Cars.vi"/>
 		<Item Name="Dependencies" Type="Dependencies">
 			<Item Name="vi.lib" Type="Folder">
+				<Item Name="Add State(s) to Queue__JKI_lib_State_Machine.vi" Type="VI" URL="/&lt;vilib&gt;/addons/_JKI Toolkits/State Machine/_JKI_lib_State_Machine.llb/Add State(s) to Queue__JKI_lib_State_Machine.vi"/>
 				<Item Name="BuildHelpPath.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/BuildHelpPath.vi"/>
 				<Item Name="Check Special Tags.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Check Special Tags.vi"/>
 				<Item Name="Clear Errors.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Clear Errors.vi"/>
@@ -52,6 +58,7 @@
 				<Item Name="Not Found Dialog.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Not Found Dialog.vi"/>
 				<Item Name="OpenDescriptor.lvlib" Type="Library" URL="/&lt;vilib&gt;/LabVIEW Open Source/Data Manipulation/TypeDescriptor/OpenDescriptor.lvlib"/>
 				<Item Name="OpenVariant.lvlib" Type="Library" URL="/&lt;vilib&gt;/LabVIEW Open Source/Data Manipulation/Variant/OpenVariant.lvlib"/>
+				<Item Name="Parse State Queue__JKI_lib_State_Machine.vi" Type="VI" URL="/&lt;vilib&gt;/addons/_JKI Toolkits/State Machine/_JKI_lib_State_Machine.llb/Parse State Queue__JKI_lib_State_Machine.vi"/>
 				<Item Name="PINGREQ.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/LabVIEW Open Source Project/MQTT Broker/Control Packets/PINGREQ/PINGREQ.lvclass"/>
 				<Item Name="PINGRESP.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/LabVIEW Open Source Project/MQTT Broker/Control Packets/PINGRESP/PINGRESP.lvclass"/>
 				<Item Name="PUBACK.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/LabVIEW Open Source Project/MQTT Broker/Control Packets/PUBACK/PUBACK.lvclass"/>
@@ -63,6 +70,10 @@
 				<Item Name="Serializer.FlattenedString.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/LabVIEW Open Source Project/Serializer/Serializer.FlattenedString/Serializer.FlattenedString.lvclass"/>
 				<Item Name="Serializer.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/LabVIEW Open Source Project/Serializer/Serializer/Serializer.lvclass"/>
 				<Item Name="Set Bold Text.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Set Bold Text.vi"/>
+				<Item Name="Set Busy.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/cursorutil.llb/Set Busy.vi"/>
+				<Item Name="Set Cursor (Cursor ID).vi" Type="VI" URL="/&lt;vilib&gt;/Utility/cursorutil.llb/Set Cursor (Cursor ID).vi"/>
+				<Item Name="Set Cursor (Icon Pict).vi" Type="VI" URL="/&lt;vilib&gt;/Utility/cursorutil.llb/Set Cursor (Icon Pict).vi"/>
+				<Item Name="Set Cursor.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/cursorutil.llb/Set Cursor.vi"/>
 				<Item Name="Set String Value.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Set String Value.vi"/>
 				<Item Name="Simple Error Handler.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Simple Error Handler.vi"/>
 				<Item Name="SUBACK.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/LabVIEW Open Source Project/MQTT Broker/Control Packets/SUBACK/SUBACK.lvclass"/>
@@ -71,6 +82,7 @@
 				<Item Name="Three Button Dialog CORE.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Three Button Dialog CORE.vi"/>
 				<Item Name="Three Button Dialog.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Three Button Dialog.vi"/>
 				<Item Name="Trim Whitespace.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Trim Whitespace.vi"/>
+				<Item Name="Unset Busy.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/cursorutil.llb/Unset Busy.vi"/>
 				<Item Name="UNSUBACK.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/LabVIEW Open Source Project/MQTT Broker/Control Packets/UNSUBACK/UNSUBACK.lvclass"/>
 				<Item Name="UNSUBSCRIBE.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/LabVIEW Open Source Project/MQTT Broker/Control Packets/UNSUBSCRIBE/UNSUBSCRIBE.lvclass"/>
 				<Item Name="VariantType.lvlib" Type="Library" URL="/&lt;vilib&gt;/Utility/VariantDataType/VariantType.lvlib"/>
