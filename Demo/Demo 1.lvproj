@@ -16,10 +16,16 @@
 		<Item Name="Utilities" Type="Folder">
 			<Item Name="Decode Publish Packet.vim" Type="VI" URL="../Decode Publish Packet.vim"/>
 			<Item Name="topic_to_Array.vi" Type="VI" URL="../topic_to_Array.vi"/>
+			<Item Name="Formatted Timestamp.vi" Type="VI" URL="../Formatted Timestamp.vi"/>
+		</Item>
+		<Item Name="Traffic Map" Type="Folder">
+			<Item Name="TrafficMap.lvclass" Type="LVClass" URL="../TrafficMap/TrafficMap.lvclass"/>
+			<Item Name="Zone.lvclass" Type="LVClass" URL="../Zone/Zone.lvclass"/>
 		</Item>
 		<Item Name="Traffic Monitoring Hub.vi" Type="VI" URL="../Traffic Monitoring Hub.vi"/>
 		<Item Name="Simulated Client.vi" Type="VI" URL="../Simulated Client.vi"/>
 		<Item Name="Generate Simulated Cars.vi" Type="VI" URL="../Generate Simulated Cars.vi"/>
+		<Item Name="Node Type -- enum.ctl" Type="VI" URL="../Node Type -- enum.ctl"/>
 		<Item Name="Dependencies" Type="Dependencies">
 			<Item Name="vi.lib" Type="Folder">
 				<Item Name="Add State(s) to Queue__JKI_lib_State_Machine.vi" Type="VI" URL="/&lt;vilib&gt;/addons/_JKI Toolkits/State Machine/_JKI_lib_State_Machine.llb/Add State(s) to Queue__JKI_lib_State_Machine.vi"/>
