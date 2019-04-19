@@ -30,6 +30,7 @@
 		<Item Name="Car" Type="Folder">
 			<Item Name="Simulated Client.vi" Type="VI" URL="../Simulated Client.vi"/>
 			<Item Name="Simulated Car Client.vi" Type="VI" URL="../Simulated Car Client.vi"/>
+			<Item Name="Car.lvclass" Type="LVClass" URL="../Car/Car.lvclass"/>
 		</Item>
 		<Item Name="Node Type -- enum.ctl" Type="VI" URL="../Node Type -- enum.ctl"/>
 		<Item Name="RequestPayload -- cluster.ctl" Type="VI" URL="../RequestPayload -- cluster.ctl"/>
@@ -37,7 +38,6 @@
 		<Item Name="DisconnectPayload-- cluster.ctl" Type="VI" URL="../DisconnectPayload-- cluster.ctl"/>
 		<Item Name="ResponsePayload -- cluster.ctl" Type="VI" URL="../ResponsePayload -- cluster.ctl"/>
 		<Item Name="WillPayload -- cluster.ctl" Type="VI" URL="../WillPayload -- cluster.ctl"/>
-		<Item Name="Car State -- enum.ctl" Type="VI" URL="../Car State -- enum.ctl"/>
 		<Item Name="Dependencies" Type="Dependencies">
 			<Item Name="vi.lib" Type="Folder">
 				<Item Name="Add State(s) to Queue__JKI_lib_State_Machine.vi" Type="VI" URL="/&lt;vilib&gt;/addons/_JKI Toolkits/State Machine/_JKI_lib_State_Machine.llb/Add State(s) to Queue__JKI_lib_State_Machine.vi"/>
