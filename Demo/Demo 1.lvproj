@@ -31,6 +31,7 @@
 			<Item Name="Simulated Client.vi" Type="VI" URL="../Simulated Client.vi"/>
 			<Item Name="Simulated Car Client.vi" Type="VI" URL="../Simulated Car Client.vi"/>
 			<Item Name="Car.lvclass" Type="LVClass" URL="../Car/Car.lvclass"/>
+			<Item Name="CarPool.lvclass" Type="LVClass" URL="../CarPool/CarPool.lvclass"/>
 		</Item>
 		<Item Name="Node Type -- enum.ctl" Type="VI" URL="../Node Type -- enum.ctl"/>
 		<Item Name="RequestPayload -- cluster.ctl" Type="VI" URL="../RequestPayload -- cluster.ctl"/>
@@ -109,6 +110,7 @@
 				<Item Name="JKI Serialization.lvlib" Type="Library" URL="/&lt;vilib&gt;/addons/_JKI.lib/Serialization/Core/JKI Serialization.lvlib"/>
 				<Item Name="LVDateTimeRec.ctl" Type="VI" URL="/&lt;vilib&gt;/Utility/miscctls.llb/LVDateTimeRec.ctl"/>
 				<Item Name="JKI Unicode.lvlib" Type="Library" URL="/&lt;vilib&gt;/addons/_JKI.lib/Unicode/JKI Unicode.lvlib"/>
+				<Item Name="RGB to Color.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/colorconv.llb/RGB to Color.vi"/>
 			</Item>
 			<Item Name="user.lib" Type="Folder">
 				<Item Name="Build Error Cluster__ogtk.vi" Type="VI" URL="/&lt;userlib&gt;/_OpenG.lib/error/error.llb/Build Error Cluster__ogtk.vi"/>
