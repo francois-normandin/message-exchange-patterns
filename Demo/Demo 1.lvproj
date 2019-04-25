@@ -14,9 +14,9 @@
 		<Property Name="server.vi.propertiesEnabled" Type="Bool">true</Property>
 		<Property Name="specify.custom.address" Type="Bool">false</Property>
 		<Item Name="Utilities" Type="Folder">
-			<Item Name="Decode Publish Packet.vim" Type="VI" URL="../Decode Publish Packet.vim"/>
-			<Item Name="topic_to_Array.vi" Type="VI" URL="../topic_to_Array.vi"/>
-			<Item Name="Formatted Timestamp.vi" Type="VI" URL="../Formatted Timestamp.vi"/>
+			<Item Name="Decode Publish Packet.vim" Type="VI" URL="../Utilities/Decode Publish Packet.vim"/>
+			<Item Name="topic_to_Array.vi" Type="VI" URL="../Utilities/topic_to_Array.vi"/>
+			<Item Name="Formatted Timestamp.vi" Type="VI" URL="../Utilities/Formatted Timestamp.vi"/>
 			<Item Name="Serializer.JKI-JSON.lvclass" Type="LVClass" URL="../Serializer.JKI-JSON/Serializer.JKI-JSON.lvclass"/>
 		</Item>
 		<Item Name="Traffic Map" Type="Folder">
@@ -24,21 +24,21 @@
 			<Item Name="Zone.lvclass" Type="LVClass" URL="../Zone/Zone.lvclass"/>
 		</Item>
 		<Item Name="Hub" Type="Folder">
-			<Item Name="Traffic Monitoring Hub.vi" Type="VI" URL="../Traffic Monitoring Hub.vi"/>
-			<Item Name="Generate Simulated Cars.vi" Type="VI" URL="../Generate Simulated Cars.vi"/>
+			<Item Name="typedefs" Type="Folder">
+				<Item Name="Node Type -- enum.ctl" Type="VI" URL="../Hub/typedefs/Node Type -- enum.ctl"/>
+				<Item Name="RequestPayload -- cluster.ctl" Type="VI" URL="../Hub/typedefs/RequestPayload -- cluster.ctl"/>
+				<Item Name="ConnectPayload-- cluster.ctl" Type="VI" URL="../Hub/typedefs/ConnectPayload-- cluster.ctl"/>
+				<Item Name="DisconnectPayload-- cluster.ctl" Type="VI" URL="../Hub/typedefs/DisconnectPayload-- cluster.ctl"/>
+				<Item Name="ResponsePayload -- cluster.ctl" Type="VI" URL="../Hub/typedefs/ResponsePayload -- cluster.ctl"/>
+				<Item Name="WillPayload -- cluster.ctl" Type="VI" URL="../Hub/typedefs/WillPayload -- cluster.ctl"/>
+			</Item>
+			<Item Name="Traffic Monitoring Hub.vi" Type="VI" URL="../Hub/Traffic Monitoring Hub.vi"/>
+			<Item Name="Simulated Car Client.vi" Type="VI" URL="../Hub/Simulated Car Client.vi"/>
 		</Item>
 		<Item Name="Car" Type="Folder">
-			<Item Name="Simulated Client.vi" Type="VI" URL="../Simulated Client.vi"/>
-			<Item Name="Simulated Car Client.vi" Type="VI" URL="../Simulated Car Client.vi"/>
 			<Item Name="Car.lvclass" Type="LVClass" URL="../Car/Car.lvclass"/>
 			<Item Name="CarPool.lvclass" Type="LVClass" URL="../CarPool/CarPool.lvclass"/>
 		</Item>
-		<Item Name="Node Type -- enum.ctl" Type="VI" URL="../Node Type -- enum.ctl"/>
-		<Item Name="RequestPayload -- cluster.ctl" Type="VI" URL="../RequestPayload -- cluster.ctl"/>
-		<Item Name="ConnectPayload-- cluster.ctl" Type="VI" URL="../ConnectPayload-- cluster.ctl"/>
-		<Item Name="DisconnectPayload-- cluster.ctl" Type="VI" URL="../DisconnectPayload-- cluster.ctl"/>
-		<Item Name="ResponsePayload -- cluster.ctl" Type="VI" URL="../ResponsePayload -- cluster.ctl"/>
-		<Item Name="WillPayload -- cluster.ctl" Type="VI" URL="../WillPayload -- cluster.ctl"/>
 		<Item Name="Dependencies" Type="Dependencies">
 			<Item Name="vi.lib" Type="Folder">
 				<Item Name="Add State(s) to Queue__JKI_lib_State_Machine.vi" Type="VI" URL="/&lt;vilib&gt;/addons/_JKI Toolkits/State Machine/_JKI_lib_State_Machine.llb/Add State(s) to Queue__JKI_lib_State_Machine.vi"/>
