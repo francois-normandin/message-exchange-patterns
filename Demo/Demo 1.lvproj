@@ -39,6 +39,9 @@
 			<Item Name="Car.lvclass" Type="LVClass" URL="../Car/Car.lvclass"/>
 			<Item Name="CarPool.lvclass" Type="LVClass" URL="../CarPool/CarPool.lvclass"/>
 		</Item>
+		<Item Name="MQTT Examples" Type="Folder">
+			<Item Name="Basic MQTT Subscribe.vi" Type="VI" URL="../../Examples/Basic MQTT Subscribe.vi"/>
+		</Item>
 		<Item Name="Dependencies" Type="Dependencies">
 			<Item Name="vi.lib" Type="Folder">
 				<Item Name="Add State(s) to Queue__JKI_lib_State_Machine.vi" Type="VI" URL="/&lt;vilib&gt;/addons/_JKI Toolkits/State Machine/_JKI_lib_State_Machine.llb/Add State(s) to Queue__JKI_lib_State_Machine.vi"/>
