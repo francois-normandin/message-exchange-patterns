@@ -106,7 +106,7 @@ color:#8a919e;
 			console.log("state: ",state);
 			
 			//Send message to notify Hub that the state has changed. 
-			message = new Paho.MQTT.Message('"'+state.toLowerCase()+'"');
+			message = new Paho.MQTT.Message(state);
 			message.destinationName = "LabVIEWDemo/users/"+clientID+"/state";
 			client.send(message); 
 		}
@@ -121,7 +121,7 @@ color:#8a919e;
 			 zone = document.querySelector('input[name="VehicleZone"]:checked').value;
 			
 			 //Construct message to notify Hub that we have changed zones 
-			 message = new Paho.MQTT.Message('"'+zone+'"');
+			 message = new Paho.MQTT.Message(zone);
 			 message.destinationName = "LabVIEWDemo/users/"+clientID+"/position";
 			 client.send(message); 
 			 
