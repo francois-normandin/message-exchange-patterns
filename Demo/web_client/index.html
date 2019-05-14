@@ -2,47 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <meta charset="utf-8"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<style>
-#messages
-{
-font-size:3;
-line-height:140%;
-color:#8a919e;
-}
-#status
-{
-font-weight:bold;
-line-height:130%;
-color:#8a919e;
-}
-h1
-{
- font-size:100%;
- font-size: 64px;
- font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
- font-style: normal;
- font-weight: normal;
- text-decoration: none;
- color:#ffbf00;
-}
-
-body
-{
- margin: 0;
- border: 0;
- vertical-align: baseline;
- float:left;
- padding: 50px;
- font-size:100%;
- font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
- background-color: #333d4f;
- color:#8a919e;
-}
-hr{
-color:#8a919e;
-}
-</style>
 	<head>
+		<link rel="stylesheet" type="text/css" href="style.css">
 		<title>NI Week: Javascript MQTT Client Example</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -94,8 +55,9 @@ color:#8a919e;
 			var logMessage = "Message [Topic: " + message.destinationName + ", Payload: "+ message.payloadString+ ", QoS: "+ message.qos+ ", Retained: "+ message.retained+ ", Duplicate: "+ message.duplicate+ "]";
 			// Write to console 
 			console.log(logMessage);
-			// Update message field  
-			document.getElementById("messages").innerHTML += logMessage + "</br>";
+			// Update message field 
+			//document.getElementById("messages").innerHTML += logMessage + "</br>";			
+			document.getElementById("messages").innerHTML = logMessage + "</br>" + document.getElementById("messages").innerHTML;
 		}
 		// Called when the driving stage changes 
 		function onVehicleStateChange() {
