@@ -1,3 +1,13 @@
+* {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        font-size: 100%;
+        vertical-align: baseline;
+        background: transparent;
+    }
+
 #messages
 {
 font-size:3;
@@ -14,6 +24,17 @@ h1
 {
  font-size:100%;
  font-size: 64px;
+ font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ text-decoration: none;
+ color:#ffbf00;
+}
+
+h2
+{
+ font-size:100%;
+ font-size: 24px;
  font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
  font-style: normal;
  font-weight: normal;
@@ -49,7 +70,7 @@ color:#8a919e;
 .gauge-b{
 	z-index: 3;
 	position: absolute;
-	background-color: #222;
+	background-color: #333d4f;
 	width: 250px;
 	height: 125px;
 	top: 75px;
@@ -60,20 +81,47 @@ color:#8a919e;
 .gauge-c{
 	z-index: 2;
 	position: absolute;
-	background-color: #5664F9;
+	background-color: #724378;
 	width: 400px;
 	height: 200px;
 	top: 200px;
 	margin-left: auto;
 	margin-right: auto;
 	border-radius:0px 0px 200px 200px ;
-  transform-origin:center top;
+	transform-origin:center top;
 	transition: all 1.3s ease-in-out;
 }
 
-.container:hover .gauge-c{
-	transform:rotate(.5turn);
+.gauge-d{
+	z-index: 5;
+	color: rgba(255,255,255,.2);
+	font-size: 1.5em;
+	line-height: 25px;
+	position: absolute;
+	width: 400px;
+	height: 200px;
+	top: 176px;
+	margin-left: auto;
+	margin-right: auto;
+	transition: all 1s ease-out;
 }
+
+.container{
+	width:400px;
+	height:200px;
+	float: left;
+	margin-top: 120px;
+	margin-left: 200px;
+	overflow: hidden;
+	text-align: center;
+	transform: translate(-50%, -50%);
+	
+}
+
+.info{
+clear:both; 
+}
+
 .container:hover .gauge-data{
 	color: rgba(255,255,255,1);
 }
@@ -86,7 +134,7 @@ color:#8a919e;
 	position: absolute;
 	width: 400px;
 	height: 200px;
-	top: 90px;
+	top: 120px;
 	margin-left: auto;
 	margin-right: auto;
 	transition: all 1s ease-out;
