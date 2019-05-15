@@ -77,13 +77,11 @@
 					$('#percent').text(ndrivers)
 			}				
 			var message_buffer = document.getElementById("messages").innerHTML;
-			//var position = message_buffer.indexOf("br",1000);
-			//console.log(message_buffer.length);
-			//if(position != -1){
-			//	message_buffer = message_buffer.substring(0,position-1);
-			//}
-			
-			
+			var position = message_buffer.indexOf("br",1000);
+			console.log(message_buffer.length);
+			if(position != -1){
+				message_buffer = message_buffer.substring(0,position-1);
+			}	
 			document.getElementById("messages").innerHTML = logMessage + "</br>" + message_buffer;
 		}
 		
