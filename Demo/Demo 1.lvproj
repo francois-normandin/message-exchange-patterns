@@ -33,6 +33,7 @@
 				<Item Name="WillPayload -- cluster.ctl" Type="VI" URL="../Hub/typedefs/WillPayload -- cluster.ctl"/>
 			</Item>
 			<Item Name="Traffic Monitoring Hub.vi" Type="VI" URL="../Hub/Traffic Monitoring Hub.vi"/>
+			<Item Name="Launch Simulated Cars.vi" Type="VI" URL="../Hub/Launch Simulated Cars.vi"/>
 			<Item Name="Simulated Car Client.vi" Type="VI" URL="../Hub/Simulated Car Client.vi"/>
 		</Item>
 		<Item Name="Car" Type="Folder">
