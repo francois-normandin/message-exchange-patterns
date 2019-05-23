@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta charset="utf-8"/>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=0.9">
+		<title>NI Week: Javascript MQTT Client Example</title>
+		<!-- Link to resources -->
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
+		<script type="text/javascript" src="jquery-min.js"></script>
+		<script type="text/javascript" src="jquery.transit.min.js"></script>
+		<script type = "text/javascript">
+		//-----------------------------------------------------------------------------------------------------------------
+		// Script section for managing the client's subscriptions 
+		//-----------------------------------------------------------------------------------------------------------------
+		var hostname = "broker.hivemq.com";
+		var port = 8000;
+		var test = "";
+		var clientID = "";
+		var zone= "None";
+
+			
+		// then to call it, plus stitch in '4' in the third group
+		clientID = (S4() + S4() + "-" + S4() + "-4" + S4().substr(0,3) + "-" + S4() + "-" + S4() + S4() + S4()).toLowerCase();
+				
+		// Random GUID generator (simple)
+		function S4() {
+				return (((1+Math.random())*0x10000)|0).toString(16).substring(1); 
+		}
+		
+		console.log(clientID);
+		
+		// Create a client instance
+		client = new Paho.MQTT.Client(hostname, port, clientID);
+
+		// Set callback handlers
+		client.onConnectionLost = onConnectionLost;
+		client.onMessageArrived = onMessageArrived;
+
+		// Connect the client
+		client.connect({onSuccess:onConnect});
+		
+		// called when the client connects
+		function onConnect() {
+			// Once a connection has been made, make a subscription and send a message.
+			console.log("onConnect");
+			var statusDisplay = document.getElementById("status");
+			statusDisplay.innerHTML = "Connected "+hostname; 
+			
+			var radiobtn = document.getElementById("VehicleZone");
+			radiobtn.checked = true; 
+			onVehicleZoneChange();
+			
+			message = new Paho.MQTT.Message('"'+"driving"+'"');
+			message.destinationName = "LabVIEWDemo/users/"+clientID+"/state";
+			client.send(message); 
+		}
+		// called when the client loses its connection
+		function onConnectionLost(responseObject) {
+			if (responseObject.errorCode !== 0) {
+				console.log("onConnectionLost:"+responseObject.errorMessage);
+				var statusDisplay = document.getElementById("status");
+				statusDisplay.innerHTML = "Connection Lost"
+			}
+		}
+		// Called when a message arrives
+		function onMessageArrived(message) {
+			// Store the message 
+			var logMessage = "Message [Topic: " + message.destinationName + ", Payload: "+ message.payloadString+ ", QoS: "+ message.qos+ ", Retained: "+ message.retained+ ", Duplicate: "+ message.duplicate+ "]";
+			
+			// Write to console 
+			console.log(logMessage);
+			
+			// Update message field 
+			var destination = message.destinationName.split("/");
+			
+			// If the incoming message was the number of cars reported by the hub
+			if(destination[destination.length-1] == "nb-drivers"){
+				// Create a variable to hold the number of drivers, convert payload to number 
+				var ndrivers = Number(message.payloadString);
+					// Update the value on the gauge 
+					$(".gauge-c").css({ transform:'rotate('+ndrivers+'deg)'})
+					// Update the value shown in the text 
+					$('#percent').text(ndrivers)
+			}				
+			// Get current message buffer 
+			//var message_buffer = document.getElementById("messages").innerHTML;
+			
+			// Get position of the nearest end of line (after 1000 chars)
+			//var position = message_buffer.indexOf("br",1000);
+			
+			// If an end of line was found, clip the message buffer to the nearest end of line 
+			//if(position != -1){
+				// Trim string
+				//message_buffer = message_buffer.substring(0,position-1);
+			//}	
+			// Append the newest incoming message to the top of the message buffer. 
+			//document.getElementById("messages").innerHTML = logMessage + "</br>" + message_buffer;
+		}
+		
+		// Called when the driving stage changes 
+		function onVehicleStateChange() {
+			//Setup state, log to console
+			var state = "Unknown";
+			if (document.getElementById("VehicleStatus").checked)state = "Driving";
+			else state = "Parked";
+			console.log("state: ",state);
+			
+			//Send message to notify Hub that the state has changed. 
+			message = new Paho.MQTT.Message('"'+state.toLowerCase()+'"');
+			message.destinationName = "LabVIEWDemo/users/"+clientID+"/state";
+			client.send(message); 
+		}
+		//Called when the zone selection has changed 
+		function onVehicleZoneChange(){
+			 //Unsubscribe from the previous zone (if any)
+			 if (zone != "None"){
+				client.unsubscribe("LabVIEWDemo/traffic-data/zone/"+zone+"/nb-drivers");
+				console.log("unsubscribe: "+zone);
+			 }
+			 //Get the currently selected zone 
+			 zone = document.querySelector('input[name="VehicleZone"]:checked').value;
+			
+			 //Construct message to notify Hub that we have changed zones 
+			 message = new Paho.MQTT.Message('"'+zone+'"');
+			 message.destinationName = "LabVIEWDemo/users/"+clientID+"/position";
+			 client.send(message); 
+			 
+			 //Subscribe to the new zone 
+			 client.subscribe("LabVIEWDemo/traffic-data/zone/"+zone+"/nb-drivers");
+			 console.log("subscribe: "+zone);
+			 
+			 //Update the subscription field 
+			 document.getElementById("zone").innerHTML = "Zone "+zone;
+			 
+		}
+		
+		//On Document Ready 
+		$(document).ready( function () {
+		$(".gauge-c").css({ transform:'rotate(.0turn)'})
+			
+		})
+		
+		$(window).bind('unload', function(){
+			message = new Paho.MQTT.Message('"'+"parked"+'"');
+			message.destinationName = "LabVIEWDemo/users/"+clientID+"/state";
+			client.send(message); 
+			
+			
+			message = new Paho.MQTT.Message('""');
+			message.destinationName = "LabVIEWDemo/users/"+clientID+"/disconnect";
+			client.send(message);
+			client.disconnect();
+			
+			
+		return "";
+		});
+		//	console.log("unloading");
+		//	message = new Paho.MQTT.Message('""');
+		//	message.destinationName = "LabVIEWDemo/users/"+clientID+"/disconnect";
+		//	client.send(message);
+		//	client.disconnect();
+		//	return "Handler for .unload() called.";
+			
+		//});
+				
+		//-----------------------------------------------------------------------------------------------------------------
+		</script>
+	</head>
+	<body>
+		<div class="titleinfo">
+		<h1 id="example_name">MQTT<span style="font-size:25px"> Web Client</span><div id="status" style="font-size:14px">Not Connected</div></h1>
+			<br>
+		</div>
+		<div class="container">
+			<div class="gauge-a"></div>
+			<div class="gauge-b"></div>
+			<div class="gauge-c"></div>
+			<div class="gauge-data"><h1 id="percent">0</h1></div>
+			<div class="gauge-d"><h2 id="zone">None</h2></div>
+		</div>	
+		<div class="info">
+			<!--Vehicle State: 
+			<input type="checkbox" id="VehicleStatus" value="0" onclick="onVehicleStateChange();"> Driving <br>-->
+			Vehicle Zone: 
+			<input type="radio" id = "VehicleZone" name="VehicleZone" value="A" onclick="onVehicleZoneChange();"> Zone A 
+			<input type="radio" id = "VehicleZone" name="VehicleZone" value="B" onclick="onVehicleZoneChange();"> Zone B 
+			<input type="radio" id = "VehicleZone" name="VehicleZone" value="C" onclick="onVehicleZoneChange();"> Zone C 
+			<input type="radio" id = "VehicleZone" name="VehicleZone" value="D" onclick="onVehicleZoneChange();"> Zone D 
+		</div>
+		<br>
+		<!--<div class="info">
+			<p id="messages"></p>
+		</div>-->
+	</body>
+</html>
