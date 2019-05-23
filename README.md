@@ -5,4 +5,9 @@ Distributed Systems are ubiquitous, whether for managing communication between m
 # Requirements
 
 - LabVIEW 2018
-- LabVIEW NXG 2.?
+
+
+# NI Week 2019 presentation
+https://github.com/francois-normandin/message-exchange-patterns/releases/download/NIWeek2019/NIWeek_2019_PPT_Session_MsgExchPatterns.pdf
+
+
