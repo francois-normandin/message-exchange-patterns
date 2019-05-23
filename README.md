@@ -5,6 +5,7 @@ Distributed Systems are ubiquitous, whether for managing communication between m
 # Requirements
 
 - LabVIEW 2018
+- Install the package dependencies that are found in the root folder
 
 
 # NI Week 2019 presentation
