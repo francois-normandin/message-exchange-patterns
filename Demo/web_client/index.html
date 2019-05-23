@@ -1,10 +1,11 @@
+<!DOCTYPE html>
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <meta charset="utf-8"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>NI Week: Javascript MQTT Client Example</title>
 		<meta name="viewport" content="width=device-width, initial-scale=0.9">
+		<title>NI Week: Javascript MQTT Client Example</title>
 		<!-- Link to resources -->
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -12,22 +13,25 @@
 		<script type="text/javascript" src="jquery-min.js"></script>
 		<script type="text/javascript" src="jquery.transit.min.js"></script>
 		<script type = "text/javascript">
-		//--------------------------- -------------------------------------------------------------------------------------
+		//-----------------------------------------------------------------------------------------------------------------
 		// Script section for managing the client's subscriptions 
-		//--------------------------- -------------------------------------------------------------------------------------
+		//-----------------------------------------------------------------------------------------------------------------
 		var hostname = "broker.hivemq.com";
 		var port = 8000;
-		var clientID = ""
+		var test = "";
+		var clientID = "";
 		var zone= "None";
 
-		//Get this users IP Address (use this as the client ID) Note: This is using JQuery 
-		$.getJSON('https://api.ipify.org?format=jsonp&callback=?', function(data) {
-		clientID = (JSON.stringify(data)+window.navigator.plugins.length.toString()+window.navigator.userAgent.replace(/\D+/g, '').toString());
+			
+		// then to call it, plus stitch in '4' in the third group
+		clientID = (S4() + S4() + "-" + S4() + "-4" + S4().substr(0,3) + "-" + S4() + "-" + S4() + S4() + S4()).toLowerCase();
+				
+		// Random GUID generator (simple)
+		function S4() {
+				return (((1+Math.random())*0x10000)|0).toString(16).substring(1); 
+		}
+		
 		console.log(clientID);
-		}); 
-		//var guid = nav.mimeTypes.length;
-		//guid += nav.userAgent.replace(/\D+/g, '');
-		//guid += nav.plugins.length;
 		
 		// Create a client instance
 		client = new Paho.MQTT.Client(hostname, port, clientID);
@@ -49,6 +53,10 @@
 			var radiobtn = document.getElementById("VehicleZone");
 			radiobtn.checked = true; 
 			onVehicleZoneChange();
+			
+			message = new Paho.MQTT.Message('"'+"driving"+'"');
+			message.destinationName = "LabVIEWDemo/users/"+clientID+"/state";
+			client.send(message); 
 		}
 		// called when the client loses its connection
 		function onConnectionLost(responseObject) {
@@ -70,7 +78,7 @@
 			var destination = message.destinationName.split("/");
 			
 			// If the incoming message was the number of cars reported by the hub
-			if(destination[destination.length-1] == "nb-cars"){
+			if(destination[destination.length-1] == "nb-drivers"){
 				// Create a variable to hold the number of drivers, convert payload to number 
 				var ndrivers = Number(message.payloadString);
 					// Update the value on the gauge 
@@ -110,7 +118,7 @@
 		function onVehicleZoneChange(){
 			 //Unsubscribe from the previous zone (if any)
 			 if (zone != "None"){
-				client.unsubscribe("LabVIEWDemo/traffic-data/zone/"+zone+"/nb-cars");
+				client.unsubscribe("LabVIEWDemo/traffic-data/zone/"+zone+"/nb-drivers");
 				console.log("unsubscribe: "+zone);
 			 }
 			 //Get the currently selected zone 
@@ -122,21 +130,44 @@
 			 client.send(message); 
 			 
 			 //Subscribe to the new zone 
-			 client.subscribe("LabVIEWDemo/traffic-data/zone/"+zone+"/nb-cars");
+			 client.subscribe("LabVIEWDemo/traffic-data/zone/"+zone+"/nb-drivers");
 			 console.log("subscribe: "+zone);
 			 
 			 //Update the subscription field 
 			 document.getElementById("zone").innerHTML = "Zone "+zone;
 			 
 		}
-
+		
 		//On Document Ready 
 		$(document).ready( function () {
 		$(".gauge-c").css({ transform:'rotate(.0turn)'})
 			
 		})
+		
+		$(window).bind('unload', function(){
+			message = new Paho.MQTT.Message('"'+"parked"+'"');
+			message.destinationName = "LabVIEWDemo/users/"+clientID+"/state";
+			client.send(message); 
+			
+			
+			message = new Paho.MQTT.Message('""');
+			message.destinationName = "LabVIEWDemo/users/"+clientID+"/disconnect";
+			client.send(message);
+			client.disconnect();
+			
+			
+		return "";
+		});
+		//	console.log("unloading");
+		//	message = new Paho.MQTT.Message('""');
+		//	message.destinationName = "LabVIEWDemo/users/"+clientID+"/disconnect";
+		//	client.send(message);
+		//	client.disconnect();
+		//	return "Handler for .unload() called.";
+			
+		//});
 				
-		//--------------------------- -------------------------------------------------------------------------------------
+		//-----------------------------------------------------------------------------------------------------------------
 		</script>
 	</head>
 	<body>
@@ -152,12 +183,13 @@
 			<div class="gauge-d"><h2 id="zone">None</h2></div>
 		</div>	
 		<div class="info">
-			Vehicle State: 
-			<input type="checkbox" id="VehicleStatus" value="0" onclick="onVehicleStateChange();"> Driving <br>
+			<!--Vehicle State: 
+			<input type="checkbox" id="VehicleStatus" value="0" onclick="onVehicleStateChange();"> Driving <br>-->
 			Vehicle Zone: 
 			<input type="radio" id = "VehicleZone" name="VehicleZone" value="A" onclick="onVehicleZoneChange();"> Zone A 
 			<input type="radio" id = "VehicleZone" name="VehicleZone" value="B" onclick="onVehicleZoneChange();"> Zone B 
 			<input type="radio" id = "VehicleZone" name="VehicleZone" value="C" onclick="onVehicleZoneChange();"> Zone C 
+			<input type="radio" id = "VehicleZone" name="VehicleZone" value="D" onclick="onVehicleZoneChange();"> Zone D 
 		</div>
 		<br>
 		<!--<div class="info">
